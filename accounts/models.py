@@ -8,6 +8,13 @@ class UserType(models.Model):
     def __str__(self):
         return self.name
 
+class Language(models.Model):
+    key = models.CharField(max_length=4)
+    name = models.CharField(max_length=128)
+
+    def __str__(self):
+        return self.name
+
 class CustomUser(AbstractUser):
     user_type = models.ForeignKey(
         UserType,
@@ -16,4 +23,10 @@ class CustomUser(AbstractUser):
         blank=True,
         default=None
     )
-
+    preferred_language = models.ForeignKey(
+        Language,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        default=None
+    )
