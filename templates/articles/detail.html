@@ -1,0 +1,11 @@
+{% block title %}{{ article.name }}{% endblock title %} 
+
+{% block content %} 
+    <h1>{{ article.name }}</h1>
+    <strong> {{ article.category }} {{ article.created_on }}</strong>
+    <p>{{ article.description }}</p>
+    {% if user.is_authenticated %}
+    <p><a href="{% url 'article_edit' article.id %}" class="btn btn-primary">Edit</a></p>
+    <p><a href="{% url 'article_delete' article.id %}" class="btn btn-danger">Delete</a></p>
+    {% endif %}
+{% endblock content %} 
